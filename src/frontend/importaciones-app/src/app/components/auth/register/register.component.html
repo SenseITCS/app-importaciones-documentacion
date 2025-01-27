@@ -1,0 +1,67 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <mat-card class="w-full max-w-md p-6">
+    <mat-card-header class="justify-center mb-6">
+      <mat-card-title class="text-2xl">Crear Contraseña</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+        <!-- Sección de validación de cédula -->
+        <div class="mb-4">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Cédula</mat-label>
+            <input matInput formControlName="cedula" type="text" [readonly]="userValidated">
+            <mat-error *ngIf="registerForm.get('cedula')?.errors?.['required']">
+              La cédula es requerida
+            </mat-error>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" 
+                  type="button"
+                  (click)="validateCedula()"
+                  [disabled]="!registerForm.get('cedula')?.value || userValidated"
+                  class="w-full mt-2">
+            {{ isLoading ? 'Validando...' : 'Validar Cédula' }}
+          </button>
+        </div>
+
+        <!-- Información del usuario validado -->
+        <div *ngIf="userValidated" class="mb-4 p-4 bg-green-50 rounded-lg">
+          <p class="text-green-800">Usuario validado:</p>
+          <p class="font-bold text-green-900">{{ userName }}</p>
+        </div>
+
+        <!-- Sección de contraseña -->
+        <div *ngIf="userValidated">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Contraseña</mat-label>
+            <input matInput formControlName="password" type="password">
+            <mat-hint>
+              La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial
+            </mat-hint>
+            <mat-error>{{ getPasswordErrorMessage() }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-full mt-4">
+            <mat-label>Confirmar Contraseña</mat-label>
+            <input matInput formControlName="confirmPassword" type="password">
+            <mat-error *ngIf="registerForm.hasError('mismatch')">
+              Las contraseñas no coinciden
+            </mat-error>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary"
+                  type="submit"
+                  [disabled]="!registerForm.valid || isLoading"
+                  class="w-full mt-4">
+            {{ isLoading ? 'Creando contraseña...' : 'Crear Contraseña' }}
+          </button>
+        </div>
+
+        <button mat-button type="button" (click)="goToLogin()" class="w-full mt-2">
+          ¿Ya tienes contraseña? Iniciar Sesión
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
