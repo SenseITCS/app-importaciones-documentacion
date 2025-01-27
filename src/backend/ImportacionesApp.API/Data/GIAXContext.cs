@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ImportacionesApp.API.Models;
 
 namespace ImportacionesApp.API.Data
 {
@@ -10,6 +11,7 @@ namespace ImportacionesApp.API.Data
         }
 
         public DbSet<DirPartyTable> DirPartyTable { get; set; }
+        public DbSet<Company> BiCompanyViewPbi { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +29,25 @@ namespace ImportacionesApp.API.Data
 
                 entity.HasIndex(e => e.VATNum_FE);
             });
+
+            modelBuilder.Entity<Company>(entity =>
+            {
+                entity.ToView("BICOMPANYVIEW_PBI");
+                
+                entity.HasKey(e => e.ID);
+                
+                entity.Property(e => e.ID)
+                    .HasColumnName("ID");
+
+                entity.Property(e => e.NAME)
+                    .HasColumnName("NAME");
+
+                entity.Property(e => e.STATUSCOMPANY)
+                    .HasColumnName("STATUSCOMPANY");
+
+                entity.Property(e => e.COMPANYCLASSIFICATION)
+                    .HasColumnName("COMPANYCLASSIFICATION");
+            });
         }
     }
 
@@ -35,6 +56,5 @@ namespace ImportacionesApp.API.Data
         public long RecId { get; set; }
         public string VATNum_FE { get; set; }
         public string Name { get; set; }
-        // Otros campos necesarios pueden ser agregados aquí
     }
 }
