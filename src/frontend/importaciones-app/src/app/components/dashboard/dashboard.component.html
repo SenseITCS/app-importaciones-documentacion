@@ -1,0 +1,55 @@
+<div class="min-h-screen bg-gray-100">
+  <!-- Header -->
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-semibold text-gray-800">App de Importaciones</h1>
+      <div class="flex items-center space-x-4">
+        <span class="text-gray-600">{{ userName }}</span>
+        <button mat-button color="warn" (click)="logout()">
+          Cerrar Sesión
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8">
+    <div class="grid gap-6 md:grid-cols-2">
+      <!-- Documentos Card -->
+      <mat-card class="p-6 cursor-pointer hover:shadow-lg transition-shadow" (click)="navigateToDocuments()">
+        <mat-card-header>
+          <mat-card-title class="text-xl mb-2">Documentos</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="text-gray-600">
+            Gestione y visualice los documentos relacionados con las importaciones.
+          </p>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- PO Plan Card -->
+      <mat-card class="p-6 cursor-pointer hover:shadow-lg transition-shadow" (click)="navigateToPOPlan()">
+        <mat-card-header>
+          <mat-card-title class="text-xl mb-2">PO Plan</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="text-gray-600">
+            Acceda y gestione el plan de órdenes de compra.
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Company Selector -->
+    <div class="fixed bottom-4 right-4 w-64 bg-white rounded-lg shadow-lg p-4">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Seleccionar Compañía</mat-label>
+        <mat-select [(value)]="selectedCompany" (selectionChange)="onCompanyChange($event)">
+          <mat-option *ngFor="let company of companies" [value]="company.id">
+            {{ company.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </main>
+</div>
