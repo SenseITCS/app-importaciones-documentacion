@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ImportacionesApp.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+359a312ddbce253980ff9d584dfa65fcfd12fc09")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eb25bf566d3687baf5b92effd7e840faa2496d20")]
 [assembly: System.Reflection.AssemblyProductAttribute("ImportacionesApp.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ImportacionesApp.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
