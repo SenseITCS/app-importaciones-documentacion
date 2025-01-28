@@ -1,0 +1,7 @@
+C:\Users\asis1.proc\Documents\app-importaciones-documentacion\src\backend\ImportacionesApp.API\obj\Debug\net7.0\ImportacionesApp.API.csproj.AssemblyReference.cache
+C:\Users\asis1.proc\Documents\app-importaciones-documentacion\src\backend\ImportacionesApp.API\obj\Debug\net7.0\ImportacionesApp.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asis1.proc\Documents\app-importaciones-documentacion\src\backend\ImportacionesApp.API\obj\Debug\net7.0\ImportacionesApp.API.AssemblyInfoInputs.cache
+C:\Users\asis1.proc\Documents\app-importaciones-documentacion\src\backend\ImportacionesApp.API\obj\Debug\net7.0\ImportacionesApp.API.AssemblyInfo.cs
+C:\Users\asis1.proc\Documents\app-importaciones-documentacion\src\backend\ImportacionesApp.API\obj\Debug\net7.0\ImportacionesApp.API.csproj.CoreCompileInputs.cache
+C:\Users\asis1.proc\Documents\app-importaciones-documentacion\src\backend\ImportacionesApp.API\obj\Debug\net7.0\ImportacionesApp.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\asis1.proc\Documents\app-importaciones-documentacion\src\backend\ImportacionesApp.API\obj\Debug\net7.0\ImportacionesApp.API.MvcApplicationPartsAssemblyInfo.cache
