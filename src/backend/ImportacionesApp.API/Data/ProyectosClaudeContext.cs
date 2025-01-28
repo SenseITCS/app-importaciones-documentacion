@@ -9,7 +9,7 @@ namespace ImportacionesApp.API.Data
         {
         }
 
-        public DbSet<CreedencialesApps> CreedencialesApps { get; set; }
+        public DbSet<CreedencialesApps> CreedencialesApps { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -46,9 +46,9 @@ namespace ImportacionesApp.API.Data
     public class CreedencialesApps
     {
         public int Id { get; set; }
-        public string Cedula { get; set; }
-        public string Contrasena { get; set; }
-        public string Fuente { get; set; }
+        public required string Cedula { get; set; }
+        public required string Contrasena { get; set; }
+        public required string Fuente { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime UltimaModificacion { get; set; }
     }

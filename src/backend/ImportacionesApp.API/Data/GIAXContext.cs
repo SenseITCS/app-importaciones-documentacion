@@ -10,8 +10,8 @@ namespace ImportacionesApp.API.Data
         {
         }
 
-        public DbSet<DirPartyTable> DirPartyTable { get; set; }
-        public DbSet<Company> BiCompanyViewPbi { get; set; }
+        public DbSet<DirPartyTable> DirPartyTable { get; set; } = null!;
+        public DbSet<Company> BiCompanyViewPbi { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,10 +22,12 @@ namespace ImportacionesApp.API.Data
                 entity.HasKey(e => e.RecId);
                 
                 entity.Property(e => e.VATNum_FE)
-                    .HasMaxLength(20);
+                    .HasMaxLength(20)
+                    .IsRequired();
 
                 entity.Property(e => e.Name)
-                    .HasMaxLength(100);
+                    .HasMaxLength(100)
+                    .IsRequired();
 
                 entity.HasIndex(e => e.VATNum_FE);
             });
@@ -37,16 +39,20 @@ namespace ImportacionesApp.API.Data
                 entity.HasKey(e => e.ID);
                 
                 entity.Property(e => e.ID)
-                    .HasColumnName("ID");
+                    .HasColumnName("ID")
+                    .IsRequired();
 
                 entity.Property(e => e.NAME)
-                    .HasColumnName("NAME");
+                    .HasColumnName("NAME")
+                    .IsRequired();
 
                 entity.Property(e => e.STATUSCOMPANY)
-                    .HasColumnName("STATUSCOMPANY");
+                    .HasColumnName("STATUSCOMPANY")
+                    .IsRequired();
 
                 entity.Property(e => e.COMPANYCLASSIFICATION)
-                    .HasColumnName("COMPANYCLASSIFICATION");
+                    .HasColumnName("COMPANYCLASSIFICATION")
+                    .IsRequired();
             });
         }
     }
@@ -54,7 +60,7 @@ namespace ImportacionesApp.API.Data
     public class DirPartyTable
     {
         public long RecId { get; set; }
-        public string VATNum_FE { get; set; }
-        public string Name { get; set; }
+        public required string VATNum_FE { get; set; }
+        public required string Name { get; set; }
     }
 }
