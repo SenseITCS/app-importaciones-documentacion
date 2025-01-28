@@ -2,9 +2,9 @@ namespace ImportacionesApp.API.Models
 {
     public class Company
     {
-        public string ID { get; set; }
-        public string NAME { get; set; }
-        public string STATUSCOMPANY { get; set; }
-        public string COMPANYCLASSIFICATION { get; set; }
+        public required string ID { get; set; }
+        public required string NAME { get; set; }
+        public required string STATUSCOMPANY { get; set; }
+        public required string COMPANYCLASSIFICATION { get; set; }
     }
 }
