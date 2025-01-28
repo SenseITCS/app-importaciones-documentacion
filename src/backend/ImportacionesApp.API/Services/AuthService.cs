@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using ImportacionesApp.API.Models;
 using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
+using ImportacionesApp.API.Data;
 
 namespace ImportacionesApp.API.Services
 {
@@ -69,6 +70,7 @@ namespace ImportacionesApp.API.Services
                 return new UserValidationResponse
                 {
                     IsValid = false,
+                    Name = "N/A",
                     Message = "Usuario no encontrado"
                 };
             }
@@ -81,6 +83,7 @@ namespace ImportacionesApp.API.Services
                 return new UserValidationResponse
                 {
                     IsValid = false,
+                    Name = user.Name,
                     Message = "El usuario ya tiene credenciales registradas"
                 };
             }
@@ -120,7 +123,8 @@ namespace ImportacionesApp.API.Services
 
         private string GenerateJwtToken(string cedula, string userName)
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"]));
+            var secretKey = _configuration["JwtSettings:SecretKey"] ?? throw new InvalidOperationException("JWT SecretKey not configured");
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
