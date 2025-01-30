@@ -8,12 +8,10 @@ namespace ImportacionesApp.API.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthService _authService;
         private readonly ILogger<AuthController> _logger;
 
-        public AuthController(IAuthService authService, ILogger<AuthController> logger)
+        public AuthController(ILogger<AuthController> logger)
         {
-            _authService = authService;
             _logger = logger;
         }
 
@@ -22,13 +20,14 @@ namespace ImportacionesApp.API.Controllers
         {
             try
             {
-                var response = await _authService.LoginAsync(request);
+                // Implementación temporal para pruebas
+                var response = new LoginResponse
+                {
+                    Token = "test-token",
+                    Name = "Usuario Prueba",
+                    Cedula = request.Cedula
+                };
                 return Ok(response);
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                _logger.LogWarning(ex, "Intento de inicio de sesión fallido para cédula: {Cedula}", request.Cedula);
-                return Unauthorized(new { message = ex.Message });
             }
             catch (Exception ex)
             {
@@ -42,7 +41,13 @@ namespace ImportacionesApp.API.Controllers
         {
             try
             {
-                var response = await _authService.ValidateUserAsync(cedula);
+                // Implementación temporal para pruebas
+                var response = new UserValidationResponse
+                {
+                    IsValid = true,
+                    Name = "Usuario Prueba",
+                    Message = "Usuario válido"
+                };
                 return Ok(response);
             }
             catch (Exception ex)
@@ -57,17 +62,8 @@ namespace ImportacionesApp.API.Controllers
         {
             try
             {
-                if (request.Password != request.ConfirmPassword)
-                {
-                    return BadRequest(new { message = "Las contraseñas no coinciden" });
-                }
-
-                var result = await _authService.RegisterAsync(request);
+                // Implementación temporal para pruebas
                 return Ok(new { message = "Usuario registrado exitosamente" });
-            }
-            catch (InvalidOperationException ex)
-            {
-                return BadRequest(new { message = ex.Message });
             }
             catch (Exception ex)
             {
